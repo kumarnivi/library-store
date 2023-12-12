@@ -14,6 +14,7 @@ export class ContactComponent {
 
   emailjs:any;
 loading: boolean = false;
+submitted: any;
 
 
   constructor(private el: ElementRef, private fb: FormBuilder, private toaster:ToastrService)
@@ -79,18 +80,18 @@ gsap.to(Element, {duration: 1, scrambleText: "THIS IS NEW TEXT"});//or customize
 //  this.formGroup
 initializeForm(): void {
   this.myForm = this.fb.group({
-    toName:  new FormControl(['',
-    //  Validators.required
+    toName:  new FormControl( '',[
+     Validators.required
     ]),
-    fromEmail: new FormControl(['',
-    //  Validators.required
+    fromEmail: new FormControl( '',[
+     Validators.required
     ]),
       
-    message: new FormControl( ['',
-    //  Validators.required
+    message: new FormControl( '',[
+     Validators.required
     ]),
-    phoneno:new FormControl( ['',
-    //  Validators.required
+    phoneno:new FormControl( '',[
+     Validators.required
     ])
 })
 }
@@ -102,30 +103,36 @@ get f(): { [key: string]: AbstractControl } {
 
 
 onSubmit(): void {
-  this.loading = true
-  const templateParams = {
-    to_name: this.myForm.value.toName,
-    from_email: this.myForm.value.fromEmail,
-    phoneno: this.myForm.value.phoneno,
-    message: this.myForm.value.message
-};
+  this.submitted = true
   if (this.myForm.valid) {
-    const templateParams = this.myForm.value;
+    this.loading = true
+    const templateParams = {
+      to_name: this.myForm.value.toName,
+      from_email: this.myForm.value.fromEmail,
+      phoneno: this.myForm.value.phoneno,
+      message: this.myForm.value.message
+  };
+
     console.log(this.myForm.value)
+    emailjs.send('service_0q7yc3a','template_qm22pv4', templateParams, 'UXMQMKDA99YgnOre5')
+    .then((response) => {
+      this.submitted = false
+      
+      this.toaster.success('Signup successfully!');
+      this.loading = false
+       console.log(this.toaster.success() ,'SUCCESS!');
+       this.myForm.reset();
+    }, (err) => {
+       console.log('FAILED...', err);
+       this.loading = true
+    });
+  } else {
+    this.loading = false
    
   }
 
-  emailjs.send('service_0q7yc3a','template_qm22pv4', templateParams, 'UXMQMKDA99YgnOre5')
-  .then((response) => {
-    this.toaster.success('SUCCESS!');
-    this.loading = false
-     console.log('SUCCESS!');
-     this.myForm.reset();
-  }, (err) => {
-     console.log('FAILED...', err);
-     this.loading = true
-  });
 this.loading = false
+this.submitted = false
 }
 
 

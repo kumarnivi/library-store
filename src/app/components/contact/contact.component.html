@@ -10,21 +10,79 @@
               Contact Us
             </h2>
           </div>
-          <form  (ngSubmit)="onSubmit()"
+          <form  
+          (ngSubmit)="onSubmit()"
           [formGroup]="myForm"
-          #form="ngForm"
+         
           >
-            <div>
+            <div class="control">
               <input type="text" placeholder="Name"  formControlName="toName"/>
+
+              <span
+              *ngIf="submitted && f['toName'].errors"
+              class="validation-error"
+            >
+              <span
+                class="validation-error"
+                class="validation-error"
+                *ngIf="f['toName'].errors['required']"
+              >
+                Member is required!
+              </span>
+            </span>
             </div>
-            <div>
+            <div class="control">
               <input type="email" placeholder="Email"   formControlName="fromEmail"/>
+              <span
+              *ngIf="submitted && f['fromEmail'].errors"
+              class="validation-error"
+            >
+              <span
+                class="validation-error"
+                class="validation-error"
+                *ngIf="f['fromEmail'].errors['required']"
+              >
+                email is required!
+              </span>
+              <span
+              class="validation-error"
+              class="validation-error"
+              *ngIf="f['fromEmail'].errors['email']"
+            >
+             enter valid email!
+            </span>
+            </span>
             </div>
-            <div>
+            <div class="control">
               <input type="text" placeholder="Pone Number"  formControlName="phoneno" />
+              <span
+              *ngIf="submitted && f['phoneno'].errors"
+              class="validation-error"
+            >
+              <span
+                class="validation-error"
+                class="validation-error"
+                *ngIf="f['phoneno'].errors['required']"
+              >
+              phoneno is required!
+              </span>
+            </span>
             </div>
-            <div>
+            <div class="control">
               <input type="text" class="message-box" placeholder="Message"   formControlName="message"/>
+              <span
+              *ngIf="submitted && f['message'].errors"
+              class="validation-error"
+            >
+              <span
+                class="validation-error"
+                class="validation-error"
+                *ngIf="f['message'].errors['required']"
+              >
+              message is required!
+              </span>
+            </span>
+           
             </div>
             <div class="btn-box " >
               <button *ngIf="!loading">
