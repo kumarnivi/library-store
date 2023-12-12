@@ -1,0 +1,49 @@
+
+<app-navbar></app-navbar>
+
+<section class="contact_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 ">
+          <div class="heading_container ">
+            <h2 class="">
+              Contact Us
+            </h2>
+          </div>
+          <form  (ngSubmit)="onSubmit()"
+          [formGroup]="myForm"
+          #form="ngForm"
+          >
+            <div>
+              <input type="text" placeholder="Name"  formControlName="toName"/>
+            </div>
+            <div>
+              <input type="email" placeholder="Email"   formControlName="fromEmail"/>
+            </div>
+            <div>
+              <input type="text" placeholder="Pone Number"  formControlName="phoneno" />
+            </div>
+            <div>
+              <input type="text" class="message-box" placeholder="Message"   formControlName="message"/>
+            </div>
+            <div class="btn-box " >
+              <button *ngIf="!loading">
+                SEND
+              </button>
+               <button class=" btn-box lds-ring " *ngIf="loading">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <div class="img-box">
+            <img src="../../../assets/images/contact-img.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

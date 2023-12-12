@@ -30,9 +30,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+            "src/assets/css/bootstrap.css",
+            "node_modules/aos/dist/aos.css",
+            "src/assets/css/responsive.css"
+          
             ],
-            "scripts": []
+            "scripts": [
+            
+              "node_modules/aos/dist/aos.js"
+            ]
           },
           "configurations": {
             "production": {

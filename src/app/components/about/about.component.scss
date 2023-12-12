@@ -1,0 +1,35 @@
+
+@import '../../home/home-page/home-page.component.scss';
+
+// about section
+.about_section {
+    position: relative;
+    background-color: #f5f6f9;
+  
+    .row {
+      align-items: center;
+    }
+  
+    .img-box {
+      img {
+        width: 100%;
+      }
+    }
+  
+    .detail-box {
+  
+      p {
+        margin-top: 15px;
+      }
+  
+      a {
+        @include hero_btn($primary1, $white, 10px, 45px, 45px);
+        margin-top: 15px;
+      }
+    }
+  
+  }
+
+
+
+  
