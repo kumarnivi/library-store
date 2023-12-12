@@ -105,8 +105,6 @@ ngOnInit(): void {
   });
 
 
-
-
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".two",
@@ -117,13 +115,11 @@ ngOnInit(): void {
     }
   });
 
+
   tl.to("#fanta",{
     top: "188%",
     left: "60%",    
 })
-
-
-
 
 
 
