@@ -23,15 +23,15 @@
  <!-- </label> -->
  <nav class="navbar" id="menu">
      <ul #menu>
-         <li><a href="">Home</a></li>
-         <li><a [routerLink]="['/about']">About</a></li>
-         <li ><a>Categories +</a>
-           <ul class="subNav">
+         <li *ngIf="authService.getCurrentUser() !== null"><a href="">Home</a></li>
+         <li  *ngIf="authService.getCurrentUser() !== null"><a [routerLink]="['/about']">About</a></li>
+         <li  *ngIf="authService.getCurrentUser() !== null"><a>Categories +</a>
+           <ul  *ngIf="authService.getCurrentUser() !== null" class="subNav">
              <li><a href="">Stories</a></li>
              <li><a href="">Stories</a></li>
              <li><a >AL Books +</a>
              
-             <ul class="subNav2">
+             <ul  *ngIf="authService.getCurrentUser() !== null" class="subNav2">
                  <li><a href="">Bio</a></li>
                  <li><a href="">Chemistry</a></li>
                  <li><a href="">Physics</a></li>
@@ -39,10 +39,19 @@
          </li>
            </ul>
          </li>
-         <li><a [routerLink]="['/deliverd']"> Oru blog</a></li>
-         <li><a [routerLink]="['/contact']">Contact Us</a></li>
-         <li><a href="">Login</a></li>
-         <li><a href=""></a></li>
+         <li  *ngIf="authService.getCurrentUser() !== null"><a [routerLink]="['/deliverd']"> Oru blog</a></li>
+         <li  *ngIf="authService.getCurrentUser() !== null"><a [routerLink]="['/contact']">Contact Us</a></li>
+         <li  *ngIf="authService.getCurrentUser() !== null"><a [routerLink]="['/profile']">Profile</a></li>
+
+       <!-- List item for logged out state -->
+<li *ngIf="authService.getCurrentUser() === null">
+  <a href="/login">Login</a>
+</li>
+<li *ngIf="authService.getCurrentUser() !== null">
+  <!-- Add any other links or content you want to display for logged-in users here -->
+  <a (click)="logOut()">
+    Log Out</a>
+</li>
  
      </ul>
  </nav>

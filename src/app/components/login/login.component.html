@@ -1,0 +1,83 @@
+<app-navbar></app-navbar>
+
+<section class="contact_section layout_padding">
+    <div class="container">
+      <div class="row">
+  <div class="col-md-6">
+          <div class="img-box">
+            <img src="../../../assets/images/contact-img.png" alt="">
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="heading_container ">
+            <h2 class="">
+             login
+            </h2>
+          </div>
+          <form  
+          (ngSubmit)="onSubmit()"
+          [formGroup]="login"
+         
+          >
+        
+            <div class="control">
+              <input type="email" placeholder="Email"   formControlName="email"/>
+              <!-- <span
+              *ngIf="submitted && f['fromEmail'].errors"
+              class="validation-error"
+            >
+              <span
+                class="validation-error"
+                class="validation-error"
+                *ngIf="f['fromEmail'].errors['required']"
+              >
+                email is required!
+              </span>
+              <span
+              class="validation-error"
+              class="validation-error"
+              *ngIf="f['fromEmail'].errors['email']"
+            >
+             enter valid email!
+            </span>
+            </span> -->
+            </div>
+            <div class="control">
+              <input type="password" placeholder="Pone Number"  formControlName="password" />
+              <!-- <span
+              *ngIf="submitted && f['phoneno'].errors"
+              class="validation-error"
+            >
+              <span
+                class="validation-error"
+                class="validation-error"
+                *ngIf="f['phoneno'].errors['required']"
+              >
+              phoneno is required!
+              </span>
+            </span> -->
+            </div>
+          
+            <div class="btn-box " >
+              <button *ngIf="!loading">
+                SEND
+              </button>
+               <button class=" btn-box lds-ring " *ngIf="loading">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </button>
+            </div>
+          </form>
+          <div class="link">
+            <span>Do not have an account?</span><a [routerLink]="['/register']">Register</a>
+           </div>
+        </div>
+      
+      </div>
+     
+    </div>
+  </section>
+

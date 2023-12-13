@@ -4,9 +4,9 @@ import emailjs from '@emailjs/browser';
 import { ToastrService } from 'ngx-toastr';
 import * as AOS from 'aos';
 import { gsap } from 'gsap/gsap-core';
-// import * as ScrollMagic from 'scrollmagic';
+import * as ScrollMagic from 'scrollmagic';
 // import * as fullpage from 'fullpage.js/dist/fullpage'; // Import fullpage.js with type definitions
-// import {  Power2, TimelineMax } from 'gsap'; 
+import {  Power2, TimelineMax } from 'gsap'; 
 
 
 // declare var TweenMax: any;
@@ -34,6 +34,8 @@ export class HomePageComponent implements OnInit {
   @ViewChild('imageFirst', { static: true }) imageFirst!: ElementRef< HTMLDivElement>;
   
 
+  
+  
   // ngAfterViewInit() {
   //   // Initialize fullpage.js
   //   new fullpage('#fullpage', {
@@ -76,7 +78,9 @@ export class HomePageComponent implements OnInit {
   
 
 
-
+// ngAfterViewInit(): void {
+//   this.initScrollAnimations()
+// }
 
 
 
@@ -121,6 +125,7 @@ ngOnInit(): void {
     left: "60%",    
 })
 
+this.initScrollAnimations()
 
 
 }
@@ -130,12 +135,12 @@ initScrollAnimations(): void {
     scrollTrigger: {
       trigger: this.imageFirst.nativeElement,
       scrub: true,
-
-      start: '50% center',
+      start: '20% center',
+     
     } as gsap.plugins.ScrollTriggerInstanceVars,
     duration: 1.1,
     scale: 1.5,
-    height: 250,
+    height: 150,
 
 
     
