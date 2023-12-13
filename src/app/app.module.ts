@@ -14,7 +14,7 @@ import { RegisterComponent } from './components/register/register.component';
 import {  HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
-
+import {  GoogleMapsModule , MapGroundOverlay} from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -28,13 +28,17 @@ import { ProfileComponent } from './components/profile/profile.component';
     ProfileComponent,
     
   ],
+ 
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+   GoogleMapsModule,
+   
+
   ],
   providers: [],
   bootstrap: [AppComponent]

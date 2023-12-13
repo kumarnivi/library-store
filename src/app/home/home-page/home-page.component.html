@@ -675,7 +675,16 @@
           <div class="col-md-6 col-lg-3 info-col">
             <div class="map_container">
               <div class="map">
-                
+                <google-map
+                height="400px"
+                width="750px"
+                (mapClick)="moveMap($event)"
+                (mapMousemove)="move($event)"
+                >
+                </google-map>
+               
+                <div> latitued: {{display?.lat}}</div>
+                <div> longitude: {{display?.lng}}</div>
                 <!-- <div id="googleMap"></div> -->
               </div>
             </div>

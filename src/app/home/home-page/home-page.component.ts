@@ -7,7 +7,7 @@ import { gsap } from 'gsap/gsap-core';
 import * as ScrollMagic from 'scrollmagic';
 // import * as fullpage from 'fullpage.js/dist/fullpage'; // Import fullpage.js with type definitions
 import {  Power2, TimelineMax } from 'gsap'; 
-
+import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 
 // declare var TweenMax: any;
 
@@ -23,17 +23,25 @@ export class HomePageComponent implements OnInit {
   loading: boolean = false;
   submitted: any;
   myForm1: FormGroup | any
-  
+  display: any;
+  center:google.maps.LatLngLiteral = {lat:24,lng:12}
+  zoom = 4;
+  markerPositions: any;
+
   constructor(private el: ElementRef, private fb: FormBuilder, private toaster:ToastrService)
   {
    this.initializeForm()
    this.initializeForm1()
   }
 
-
+  @ViewChild(MapInfoWindow) infoWindow!: MapInfoWindow ;
   @ViewChild('imageFirst', { static: true }) imageFirst!: ElementRef< HTMLDivElement>;
   
+  
 
+  openInfoWindow(marker: MapMarker) {
+    this.infoWindow.open(marker);
+  }
   
   
   // ngAfterViewInit() {
@@ -128,7 +136,22 @@ ngOnInit(): void {
 this.initScrollAnimations()
 
 
+
+
 }
+
+moveMap(event:google.maps.MapMouseEvent){
+  if(event.latLng != null) {
+    this.center =(event.latLng?.toJSON())
+  }
+}
+
+move(event:google.maps.MapMouseEvent){
+  if(event.latLng != null) {
+    this.display =(event.latLng?.toJSON())
+  }
+}
+
 
 initScrollAnimations(): void {
   gsap.to(this.imageFirst.nativeElement, {
