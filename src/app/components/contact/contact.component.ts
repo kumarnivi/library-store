@@ -12,7 +12,7 @@ export class ContactComponent {
 
   myForm: FormGroup | any ;
 
-  emailjs:any;
+ emailjs:any;
 loading: boolean = false;
 submitted: any;
 

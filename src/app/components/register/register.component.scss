@@ -1,6 +1,24 @@
 @import '../../home/home-page/home-page.component.scss';
 
 
+#register{
+    background-color: #f7f7f7;
+    box-shadow: 2px 3px 13px 0px #09817570;
+    border-radius: 8px;
+  }
+
+.register-div{
+   
+    // margin-top: 50px;
+    padding: 30px 40px;
+}
+
+.contact_section form {
+  padding-right: 0; 
+}
+
+
+
 /* Loader css */
 .lds-ring {
     display: inline-block;
@@ -36,5 +54,12 @@
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+
+
+  @media (max-width:767px) {
+    .img-box{
+        display: none;
     }
   }
