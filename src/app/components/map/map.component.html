@@ -1,0 +1,13 @@
+<p>map works!</p>
+<!-- <google-map></google-map> -->
+<form #locationForm (ngSubmit)="connectLocations()">
+    <label for="from">From:</label>
+    <input type="text" id="from" name="from" [(ngModel)]="fromLocation" #fromInput>
+  
+    <label for="to">To:</label>
+    <input type="text" id="to" name="to" [(ngModel)]="toLocation" #toInput>
+  
+    <button type="submit">Connect</button>
+  </form>
+  <div #map id="map"></div>
+  

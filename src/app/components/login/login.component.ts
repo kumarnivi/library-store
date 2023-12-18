@@ -11,7 +11,7 @@ import { UserInterface } from '../user.interface';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-loading: any;
+loading: boolean = false;
 
 
 
@@ -30,16 +30,19 @@ constructor(
   });
 
   onSubmit() {
+    this.loading = true
     this.http
       .post<{ user: UserInterface }>('https://api.realworld.io/api/users/login', {
         user: this.login.getRawValue(),
       })
       .subscribe((response) => {
         console.log(response, 'response');
+        this.loading = false
         localStorage.setItem('token', response.user.token);
         localStorage.setItem('username', response.user.username);
         this.authService.setCurrentUser(response.user);
         this.router.navigate(['/'])
+
       });
   }
   

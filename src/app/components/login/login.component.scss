@@ -39,8 +39,8 @@ a{
     box-sizing: border-box;
     display: block;
     position: absolute;
-    top: 10px;
-    left: 237px;
+    top: 8px;
+    left: 180px;
     width: 30px;
     height: 30px;
     border: 2px solid #fff;
@@ -48,6 +48,7 @@ a{
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: #fff transparent transparent transparent;
   }
+  
   .lds-ring div:nth-child(1) {
     animation-delay: -0.45s;
   }

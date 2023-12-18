@@ -10,7 +10,7 @@ import {  Power2, TimelineMax } from 'gsap';
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 
 // declare var TweenMax: any;
-
+declare var google: any; 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -23,10 +23,12 @@ export class HomePageComponent implements OnInit {
   loading: boolean = false;
   submitted: any;
   myForm1: FormGroup | any
-  display: any;
+  display: any = {};
   center:google.maps.LatLngLiteral = {lat:24,lng:12}
   zoom = 4;
   markerPositions: any;
+  map: any;
+
 
   constructor(private el: ElementRef, private fb: FormBuilder, private toaster:ToastrService)
   {
@@ -43,7 +45,10 @@ export class HomePageComponent implements OnInit {
     this.infoWindow.open(marker);
   }
   
-  
+
+  ngAfterViewInit() {
+    this.initMap();
+  }
   // ngAfterViewInit() {
   //   // Initialize fullpage.js
   //   new fullpage('#fullpage', {
@@ -91,7 +96,30 @@ export class HomePageComponent implements OnInit {
 // }
 
 
+initMap() {
+  const mapProperties = {
+    center: new google.maps.LatLng(7.8731, 80.7718), // Default to Sri Lanka coordinates
+    zoom: 8
+  };
+  const mapElement = document.getElementById('map');
+  if (mapElement) {
+    this.map = new google.maps.Map(mapElement, mapProperties);
+  } else {
+    console.error("Could not find the 'map' element.");
+  }
+}
 
+// Function to move the map to a specific location based on coordinates
+moveMap(event: any) {
+  // Example: On map click, update the displayed coordinates and move the map
+  this.display.lat = event.latLng.lat();
+  this.display.lng = event.latLng.lng();
+
+  // Move the map to the clicked coordinates
+  if (this.map) {
+    this.map.setCenter(event.latLng);
+  }
+}
 
 ngOnInit(): void {
 
@@ -135,22 +163,43 @@ ngOnInit(): void {
 
 this.initScrollAnimations()
 
-
+// this.initMap()
 
 
 }
 
-moveMap(event:google.maps.MapMouseEvent){
-  if(event.latLng != null) {
-    this.center =(event.latLng?.toJSON())
-  }
-}
 
-move(event:google.maps.MapMouseEvent){
-  if(event.latLng != null) {
-    this.display =(event.latLng?.toJSON())
-  }
-}
+
+
+
+// moveMap(event:google.maps.MapMouseEvent){
+//   if(event.latLng != null) {
+//     this.center =(event.latLng?.toJSON())
+//   }
+// }
+
+// move(event:google.maps.MapMouseEvent){
+//   if(event.latLng != null) {
+//     this.display =(event.latLng?.toJSON())
+//   }
+// }
+
+
+// initMap() {
+//   const mapProperties = {
+//     center: new google.maps.LatLng(7.8731, 80.7718), // Sri Lanka coordinates
+//     zoom: 8
+//   };
+//   // Retrieve the 'map' element and initialize the Google Map
+//   const mapElement = document.getElementById('map');
+//   if (mapElement) {
+//     this.map = new google.maps.Map(mapElement, mapProperties);
+//   } else {
+//     console.error("Could not find the 'map' element.");
+//   }
+// }
+
+
 
 
 initScrollAnimations(): void {
@@ -214,7 +263,7 @@ get l(): { [key: string]: AbstractControl } {
 
 
 onSubmit(): void {
-
+this.loading = true 
   this.submitted = true
   if (this.myForm.valid) {
     this.loading = true

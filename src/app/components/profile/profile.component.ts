@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import { RegisterServiceService } from 'src/app/shared/register-service.service';
 import { UserInterface } from '../user.interface';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
+  
 })
 export class ProfileComponent implements OnInit{
 

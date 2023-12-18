@@ -22,12 +22,14 @@
    </label>
  <!-- </label> -->
  <nav class="navbar" id="menu">
+ 
+
      <ul #menu>
          <li *ngIf="authService.getCurrentUser() !== null"><a href="">Home</a></li>
          <li  *ngIf="authService.getCurrentUser() !== null"><a [routerLink]="['/about']">About</a></li>
-         <li  *ngIf="authService.getCurrentUser() !== null"><a>Categories +</a>
+         <li  *ngIf="authService.getCurrentUser() !== null"><a [routerLink]="['/map']">Categories +</a>
            <ul  *ngIf="authService.getCurrentUser() !== null" class="subNav">
-             <li><a href="">Stories</a></li>
+             <li ><a href="" >Stories</a></li>
              <li><a href="">Stories</a></li>
              <li><a >AL Books +</a>
              
